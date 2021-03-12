@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { Componente } from '../../interfaces/interfaces';
+import { DataService } from '../../services/data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-inicio',
@@ -6,69 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
-  componentes: Componente[]=[
-    {
-      icon: 'american-football',
-      name: 'Action Sheet',
-      redirectTo:'/action-sheet'
-    },
-    {
-      icon: 'duplicate',
-      name: 'Alert',
-      redirectTo:'/alert'
-    },
-    {
-      icon: 'beaker',
-      name: 'Avatar',
-      redirectTo:'/avatar'
-    },
-    {
-      icon: 'radio-button-on',
-      name: 'Botones',
-      redirectTo:'/botones'
-    },
-    {
-      icon: 'card',
-      name: 'Cards',
-      redirectTo:'/card'
-    },
-    {
-      icon: 'checkmark-circle-outline',
-      name: 'Checkout',
-      redirectTo:'/check'
-    },
-    {
-      icon: 'calendar',
-      name: 'DateTime',
-      redirectTo:'/date-time'
-    },
-    {
-      icon: 'car',
-      name: 'Fabs',
-      redirectTo:'/fab'
-    },
-    {
-      icon: 'grid',
-      name: 'Grid - Rows',
-      redirectTo:'/grid'
-    },
-    {
-      icon: 'infinite',
-      name: 'Infinite Scroll',
-      redirectTo:'/infinite-scroll'
-    }
-  ]
-
-  constructor() { }
+  componentes: Observable<Componente[]>;
+  constructor(private menuCtrl:MenuController, private dataService:DataService) { }
 
   ngOnInit() {
+    this.componentes= this.dataService.getMenuOpts()
+  }
+  toogleMenu(){
+    this.menuCtrl.toggle()//si solo hay un menu, si no pasa el parametro del id
+
   }
 
 }
 
-interface Componente {
-  icon: string;
-  name: string;
-  redirectTo: string;
-}
 

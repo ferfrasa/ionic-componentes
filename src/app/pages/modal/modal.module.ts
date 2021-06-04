@@ -16,7 +16,7 @@ import { ModalInfoPage } from '../modal-info/modal-info.page';
     FormsModule,
     IonicModule,
     ModalPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   declarations: [ModalPage],
   entryComponents:[ModalInfoPage]
